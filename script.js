@@ -5,7 +5,13 @@ function Book(title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
-  this.info = function() {
-    console.log(`${this.title} by ${this.author}, ${this.pages} pages, ${this.read}.`);
-  }
+}
+
+function addBookToLibrary() {
+  let title = prompt("Title of the book:");
+  let author = prompt("Author of the book:");
+  let pages = prompt("How many pages does the book have?");
+  let read = prompt("Did you read it? (read / not read yet)");
+
+  myLibrary.push(new Book(title, author, pages, read));
 }
