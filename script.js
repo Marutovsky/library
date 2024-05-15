@@ -21,8 +21,23 @@ function addBookToLibrary() {
   myLibrary.push(new Book(title, author, pages, read));
 }
 
-for (book in myLibrary) {
+myLibrary.forEach((book) => {
   let card = document.createElement('div');
+  let bookTitle = document.createElement('h2');
+  let bookAuthor = document.createElement('h3');
+  let bookPages = document.createElement('p');
+  let bookRead = document.createElement('p');
+
   card.classList.add("card");
   content.appendChild(card);
-}
+
+  bookTitle.textContent = book.title;
+  bookAuthor.textContent = book.author;
+  bookPages.textContent = book.pages;
+  bookRead.textContent = book.read;
+
+  card.appendChild(bookTitle);
+  card.appendChild(bookAuthor);
+  card.appendChild(bookPages);
+  card.appendChild(bookRead);
+});
