@@ -2,7 +2,14 @@ const content = document.querySelector(".content");
 
 const myLibrary = [
   {title: 'The Hobbit', author: 'Rowling', pages: '123', read: 'not read yet'},
-  {title: 'Something', author: 'XYZ', pages: '542', read: 'read'}
+  {title: 'Something', author: 'XYZ', pages: '542', read: 'read'},
+  {title: 'Something', author: 'XYZ', pages: '542', read: 'read'},
+  {title: 'Something', author: 'XYZ', pages: '542', read: 'read'},
+  {title: 'Something', author: 'XYZ', pages: '542', read: 'read'},
+  {title: 'Something', author: 'XYZ', pages: '542', read: 'read'},
+  {title: 'Something', author: 'XYZ', pages: '542', read: 'read'},
+  {title: 'Something', author: 'XYZ', pages: '542', read: 'read'},
+  {title: 'Something', author: 'XYZ', pages: '542', read: 'read'},
 ];
 
 function Book(title, author, pages, read) {
