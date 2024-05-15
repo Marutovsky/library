@@ -1,7 +1,7 @@
 const content = document.querySelector(".content");
 
 const myLibrary = [
-  {title: 'The Hobbit', author: 'Rowling', pages: '123', read: 'not read yet'},
+  {title: 'The Hobbit: An Unexpected Journey', author: 'Rowling', pages: '123', read: 'not read yet'},
   {title: 'Something', author: 'XYZ', pages: '542', read: 'read'},
   {title: 'Something', author: 'XYZ', pages: '542', read: 'read'},
   {title: 'Something', author: 'XYZ', pages: '542', read: 'read'},
@@ -26,25 +26,30 @@ function addBookToLibrary() {
   let read = prompt("Did you read it? (read / not read yet)");
 
   myLibrary.push(new Book(title, author, pages, read));
+  updateLibrary();
 }
 
-myLibrary.forEach((book) => {
-  let card = document.createElement('div');
-  let bookTitle = document.createElement('h2');
-  let bookAuthor = document.createElement('h3');
-  let bookPages = document.createElement('p');
-  let bookRead = document.createElement('p');
+function updateLibrary() {
+  myLibrary.forEach((book) => {
+    let card = document.createElement('div');
+    let bookTitle = document.createElement('h2');
+    let bookAuthor = document.createElement('h3');
+    let bookPages = document.createElement('p');
+    let bookRead = document.createElement('p');
+  
+    card.classList.add("card");
+    content.appendChild(card);
+  
+    bookTitle.textContent = book.title;
+    bookAuthor.textContent = `by ${book.author}`;
+    bookPages.textContent = `${book.pages} pages`;
+    bookRead.textContent = book.read;
+  
+    card.appendChild(bookTitle);
+    card.appendChild(bookAuthor);
+    card.appendChild(bookPages);
+    card.appendChild(bookRead);
+  });
+}
 
-  card.classList.add("card");
-  content.appendChild(card);
-
-  bookTitle.textContent = book.title;
-  bookAuthor.textContent = book.author;
-  bookPages.textContent = book.pages;
-  bookRead.textContent = book.read;
-
-  card.appendChild(bookTitle);
-  card.appendChild(bookAuthor);
-  card.appendChild(bookPages);
-  card.appendChild(bookRead);
-});
+updateLibrary();
