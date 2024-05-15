@@ -26,10 +26,10 @@ function addBookToLibrary() {
   let read = prompt("Did you read it? (read / not read yet)");
 
   myLibrary.push(new Book(title, author, pages, read));
-  updateLibrary();
+  reloadCards();
 }
 
-function updateLibrary() {
+function createCards() {
   myLibrary.forEach((book) => {
     let card = document.createElement('div');
     let bookTitle = document.createElement('h2');
@@ -52,4 +52,16 @@ function updateLibrary() {
   });
 }
 
-updateLibrary();
+function removeCards() {
+  let cards = document.querySelectorAll('.card');
+  cards.forEach((card) => {
+    card.remove();
+  })
+}
+
+function reloadCards() {
+  removeCards();
+  createCards();
+}
+
+createCards();
