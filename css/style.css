@@ -37,3 +37,22 @@ h1 {
   border-radius: 4px;
   background-color: #f8f8f8;
 }
+
+#new-book {
+  order: 10;
+  font-size: 1.5rem;
+  height: 300px;
+  background-color: #57a773;
+  border: 2px solid #484d6d;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & ion-icon {
+    font-size: 2rem;
+    padding-bottom: 2px;
+    margin-right: 5px;
+  }
+}
