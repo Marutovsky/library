@@ -1,16 +1,20 @@
-const content = document.querySelector(".content");
+const content = document.querySelector('.content');
+const newBookButton = document.querySelector('#new-book');
+const newBookDialog = document.querySelector('#new-book-dialog');
+const addBookBtn = document.querySelector('#add-book-btn');
+const dialogCloseBtn = document.querySelector('#close-dialog');
+const dialogTitleInput = document.querySelector('#dialog-title');
+const dialogAuthorInput = document.querySelector('#dialog-author');
+const dialogPagesInput = document.querySelector('#dialog-pages');
+const dialogReadChecked = document.querySelector('input[name="read"]:checked');
+const dialogReadYes = document.querySelector('#dialog-read-yes');
 
 const myLibrary = [
-  {title: 'The Hobbit: An Unexpected Journey', author: 'Rowling', pages: '123', read: 'not read yet'},
-  {title: 'Something', author: 'XYZ', pages: '542', read: 'read'},
-  {title: 'Something', author: 'XYZ', pages: '542', read: 'read'},
-  {title: 'Something', author: 'XYZ', pages: '542', read: 'read'},
-  {title: 'Something', author: 'XYZ', pages: '542', read: 'read'},
-  {title: 'Something', author: 'XYZ', pages: '542', read: 'read'},
-  {title: 'Something', author: 'XYZ', pages: '542', read: 'read'},
-  {title: 'Something', author: 'XYZ', pages: '542', read: 'read'},
-  {title: 'Something', author: 'XYZ', pages: '542', read: 'read'},
-];
+  {title: 'The Hobbit: An Unexpected Journey', author: 'Rowling', pages: '123', read: 'no'},
+  {title: 'Something', author: 'XYZ', pages: '542', read: 'yes'},
+]
+
+createCards();
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -20,30 +24,30 @@ function Book(title, author, pages, read) {
 }
 
 function addBookToLibrary() {
-  let title = prompt("Title of the book:");
-  let author = prompt("Author of the book:");
-  let pages = prompt("How many pages does the book have?");
-  let read = prompt("Did you read it? (read / not read yet)");
+  let title = dialogTitleInput.value;
+  let author = dialogAuthorInput.value;
+  let pages = dialogPagesInput.value;
+  let read = dialogReadChecked.value;
 
   myLibrary.push(new Book(title, author, pages, read));
   reloadCards();
 }
 
 function createCards() {
-  myLibrary.forEach((book) => {
+  myLibrary.forEach(book => {
     let card = document.createElement('div');
     let bookTitle = document.createElement('h2');
     let bookAuthor = document.createElement('h3');
     let bookPages = document.createElement('p');
     let bookRead = document.createElement('p');
   
-    card.classList.add("card");
+    card.classList.add('card');
     content.appendChild(card);
   
     bookTitle.textContent = book.title;
     bookAuthor.textContent = `by ${book.author}`;
     bookPages.textContent = `${book.pages} pages`;
-    bookRead.textContent = book.read;
+    bookRead.textContent = `Read: ${book.read}`;
   
     card.appendChild(bookTitle);
     card.appendChild(bookAuthor);
@@ -54,7 +58,7 @@ function createCards() {
 
 function removeCards() {
   let cards = document.querySelectorAll('.card');
-  cards.forEach((card) => {
+  cards.forEach(card => {
     card.remove();
   })
 }
@@ -64,4 +68,29 @@ function reloadCards() {
   createCards();
 }
 
-createCards();
+function clearDialogInputs() {
+  dialogTitleInput.value = '';
+  dialogAuthorInput.value = '';
+  dialogPagesInput.value = '';
+  dialogReadYes.checked = true;
+}
+
+newBookButton.addEventListener('click', () => {
+  newBookDialog.showModal();
+});
+
+addBookBtn.addEventListener('click', e => {
+  if (document.querySelector("#new-book-dialog form").checkValidity()) {
+    e.preventDefault();
+    addBookToLibrary();
+    clearDialogInputs();
+  } else {
+    document.querySelector("#new-book-dialog form").reportValidity();
+  }
+  
+});
+
+dialogCloseBtn.addEventListener('click', () => {
+  clearDialogInputs();
+  newBookDialog.close();
+})

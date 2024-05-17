@@ -14,7 +14,45 @@
   <div class="content">
     <button id="new-book"><ion-icon name="add-circle-outline"></ion-icon>New book</button>
   </div>
-
+  <dialog id="new-book-dialog">
+    <form>
+      <p>
+        <label>
+          Title:
+          <input type="text" id="dialog-title" required>
+        </label>
+      </p> 
+      <p>
+        <label>
+          Author:
+          <input type="text" id="dialog-author" required>
+        </label>
+      </p> 
+      <p>
+        <label>
+          Pages:
+          <input type="number" id="dialog-pages" required>
+        </label>
+      </p>
+      <p>
+        <label>
+          Read:
+          <label>
+            <input type="radio" name="read" id="dialog-read-yes" value="yes" checked>
+            Yes
+          </label>
+          <label>
+            <input type="radio" name="read" id="dialog-read-no" value="no">
+            No
+          </label>
+        </label>
+      </p>
+      <div>
+        <button id="close-dialog" type="button">Cancel</button>
+        <button id="add-book-btn" type="submit">Add book</button>
+      </div>
+    </form>
+  </dialog>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
