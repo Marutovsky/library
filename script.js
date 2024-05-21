@@ -40,7 +40,7 @@ function createCards() {
     let bookAuthor = document.createElement('h3');
     let bookPages = document.createElement('p');
     let bookRead = document.createElement('p');
-    let removeCardButton = document.createElement('button');
+    let removeBookButton = document.createElement('button');
   
     card.classList.add('card');
     content.appendChild(card);
@@ -50,14 +50,14 @@ function createCards() {
     bookPages.textContent = `${book.pages} pages`;
     bookRead.textContent = `Read: ${book.read}`;
 
-    removeCardButton.textContent = "Remove";
-    removeCardButton.className = "remove-card";
+    removeBookButton.textContent = "Remove";
+    removeBookButton.className = "remove-book";
   
     card.appendChild(bookTitle);
     card.appendChild(bookAuthor);
     card.appendChild(bookPages);
     card.appendChild(bookRead);
-    card.appendChild(removeCardButton);
+    card.appendChild(removeBookButton);
   });
 }
 
