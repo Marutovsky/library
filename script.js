@@ -34,7 +34,7 @@ function addBookToLibrary() {
 }
 
 function createCards() {
-  myLibrary.forEach(book => {
+  myLibrary.forEach((book, bookIndex) => {
     let card = document.createElement('div');
     let bookTitle = document.createElement('h2');
     let bookAuthor = document.createElement('h3');
@@ -43,6 +43,7 @@ function createCards() {
     let removeBookButton = document.createElement('button');
   
     card.classList.add('card');
+    card.setAttribute("data-index", bookIndex);
     content.appendChild(card);
   
     bookTitle.textContent = book.title;
