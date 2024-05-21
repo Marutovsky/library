@@ -1,8 +1,8 @@
 const content = document.querySelector('.content');
 const newBookButton = document.querySelector('#new-book');
 const newBookDialog = document.querySelector('#new-book-dialog');
-const addBookBtn = document.querySelector('#add-book-btn');
-const dialogCloseBtn = document.querySelector('#close-dialog');
+const addBookButton = document.querySelector('#add-book-btn');
+const dialogCloseButton = document.querySelector('#close-dialog');
 const dialogTitleInput = document.querySelector('#dialog-title');
 const dialogAuthorInput = document.querySelector('#dialog-author');
 const dialogPagesInput = document.querySelector('#dialog-pages');
@@ -40,6 +40,7 @@ function createCards() {
     let bookAuthor = document.createElement('h3');
     let bookPages = document.createElement('p');
     let bookRead = document.createElement('p');
+    let removeCardButton = document.createElement('button');
   
     card.classList.add('card');
     content.appendChild(card);
@@ -48,11 +49,15 @@ function createCards() {
     bookAuthor.textContent = `by ${book.author}`;
     bookPages.textContent = `${book.pages} pages`;
     bookRead.textContent = `Read: ${book.read}`;
+
+    removeCardButton.textContent = "Remove";
+    removeCardButton.className = "remove-card";
   
     card.appendChild(bookTitle);
     card.appendChild(bookAuthor);
     card.appendChild(bookPages);
     card.appendChild(bookRead);
+    card.appendChild(removeCardButton);
   });
 }
 
@@ -79,7 +84,7 @@ newBookButton.addEventListener('click', () => {
   newBookDialog.showModal();
 });
 
-addBookBtn.addEventListener('click', e => {
+addBookButton.addEventListener('click', e => {
   if (document.querySelector("#new-book-dialog form").checkValidity()) {
     e.preventDefault();
     addBookToLibrary();
@@ -90,7 +95,7 @@ addBookBtn.addEventListener('click', e => {
   
 });
 
-dialogCloseBtn.addEventListener('click', () => {
+dialogCloseButton.addEventListener('click', () => {
   clearDialogInputs();
   newBookDialog.close();
 })
