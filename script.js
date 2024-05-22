@@ -9,7 +9,7 @@ const dialogPagesInput = document.querySelector('#dialog-pages');
 const dialogReadChecked = document.querySelector('input[name="read"]:checked');
 const dialogReadYes = document.querySelector('#dialog-read-yes');
 
-const myLibrary = [
+let myLibrary = [
   {title: 'The Hobbit: An Unexpected Journey', author: 'Rowling', pages: '123', read: 'no'},
   {title: 'Something', author: 'XYZ', pages: '542', read: 'yes'},
 ]
@@ -35,12 +35,12 @@ function addBookToLibrary() {
 
 function createCards() {
   myLibrary.forEach((book, bookIndex) => {
-    let card = document.createElement('div');
-    let bookTitle = document.createElement('h2');
-    let bookAuthor = document.createElement('h3');
-    let bookPages = document.createElement('p');
-    let bookRead = document.createElement('p');
-    let removeBookButton = document.createElement('button');
+    const card = document.createElement('div');
+    const bookTitle = document.createElement('h2');
+    const bookAuthor = document.createElement('h3');
+    const bookPages = document.createElement('p');
+    const bookRead = document.createElement('p');
+    const removeBookButton = document.createElement('button');
   
     card.classList.add('card');
     card.setAttribute('data-index', bookIndex);
@@ -60,6 +60,11 @@ function createCards() {
     card.appendChild(bookPages);
     card.appendChild(bookRead);
     card.appendChild(removeBookButton);
+
+    removeBookButton.addEventListener('click', () => {
+      myLibrary = myLibrary.filter((book, index) => index !== bookIndex);
+      reloadCards();
+    })
   });
 }
 
