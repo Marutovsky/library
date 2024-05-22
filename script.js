@@ -43,7 +43,7 @@ function createCards() {
     let removeBookButton = document.createElement('button');
   
     card.classList.add('card');
-    card.setAttribute("data-index", bookIndex);
+    card.setAttribute('data-index', bookIndex);
     content.appendChild(card);
   
     bookTitle.textContent = book.title;
@@ -51,8 +51,9 @@ function createCards() {
     bookPages.textContent = `${book.pages} pages`;
     bookRead.textContent = `Read: ${book.read}`;
 
-    removeBookButton.textContent = "Remove";
-    removeBookButton.className = "remove-book";
+    removeBookButton.textContent = 'Remove';
+    removeBookButton.className = 'remove-book';
+    removeBookButton.setAttribute('type', 'button');
   
     card.appendChild(bookTitle);
     card.appendChild(bookAuthor);
