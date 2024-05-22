@@ -34,19 +34,29 @@
           <input type="number" id="dialog-pages" required>
         </label>
       </p>
-      <p>
+      <div class="toggle-radio">
+        <p>Read:</p>
+        <input type="radio" name="read" id="dialog-read-yes" value="Yes" checked>
+        <input type="radio" name="read" id="dialog-read-no" value="No">
+        <div class="switch">
+          <label for="dialog-read-yes">Yes</label>
+          <label for="dialog-read-no">No</label>
+          <span></span>
+        </div>
+      </div>
+      
+      <!-- <p>
         <label>
           Read:
-          <label>
-            <input type="radio" name="read" id="dialog-read-yes" value="yes" checked>
-            Yes
-          </label>
-          <label>
-            <input type="radio" name="read" id="dialog-read-no" value="no">
-            No
-          </label>
+          <input type="radio" name="read" id="dialog-read-yes" value="Yes" checked>
+          <input type="radio" name="read" id="dialog-read-no" value="No">
+          <div class="switch">
+            <label for="dialog-read-yes">Yes</label>
+            <label for="dialog-read-no">No</label>
+            <span></span>
+          </div>
         </label>
-      </p>
+      </p> -->
       <div>
         <button id="close-dialog" type="button">Cancel</button>
         <button id="add-book-btn" type="submit">Add book</button>

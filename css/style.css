@@ -56,3 +56,93 @@ h1 {
     margin-right: 5px;
   }
 }
+
+
+/* Book read radio switch */
+
+.switch {
+  position: relative;
+  width: 150px;
+  height: 50px;
+  text-align: center;
+  background: #57a773;
+  transition: all 0.2s ease;
+  border-radius: 25px;
+
+  & span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 4px;
+    margin: -2px 0px 0px -4px;
+    background: #fff;
+    display: block;
+    transform: rotate(-45deg);
+    transition: all 0.2s ease;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 4px;
+      height: 12px;
+      margin-top: -8px;
+      background: #fff;
+      transition: all 0.2s ease;
+    }
+  }
+}
+
+
+input[type='radio'] {
+  display: none;
+}
+
+.switch label {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.2);
+  width: 60px;
+  line-height: 50px;
+  transition: all 0.2s ease;
+}
+
+label[for='dialog-read-yes'] {
+  position: absolute;
+  left: 0%;
+  height: 20px;
+}
+
+label[for='dialog-read-no'] {
+  position: absolute;
+  right: 0%;
+}
+
+#dialog-read-no:checked ~ .switch {
+  background: #ee6352;
+}
+
+#dialog-read-no:checked ~ .switch span {
+  background: #fff;
+  margin-left: -8px;
+
+  &::after {
+    background: #fff;
+    height: 20px;
+    margin-top: -8px;
+    margin-left: 8px;
+  }
+}
+
+#dialog-read-yes:checked ~ .switch label[for='dialog-read-yes'] {
+  color: #fff;
+}
+
+#dialog-read-no:checked ~ .switch label[for='dialog-read-no'] {
+  color: #fff;
+}
+
+.toggle-radio {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}

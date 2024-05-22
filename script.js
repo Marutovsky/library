@@ -6,8 +6,9 @@ const dialogCloseButton = document.querySelector('#close-dialog');
 const dialogTitleInput = document.querySelector('#dialog-title');
 const dialogAuthorInput = document.querySelector('#dialog-author');
 const dialogPagesInput = document.querySelector('#dialog-pages');
-const dialogReadChecked = document.querySelector('input[name="read"]:checked');
 const dialogReadYes = document.querySelector('#dialog-read-yes');
+const dialogReadNo = document.querySelector('#dialog-read-no');
+let dialogReadChecked = document.querySelector('input[name="read"]:checked');;
 
 let myLibrary = [
   {title: 'The Hobbit: An Unexpected Journey', author: 'Rowling', pages: '123', read: 'no'},
@@ -85,6 +86,7 @@ function clearDialogInputs() {
   dialogAuthorInput.value = '';
   dialogPagesInput.value = '';
   dialogReadYes.checked = true;
+  dialogReadChecked = document.querySelector('input[name="read"]:checked');
 }
 
 newBookButton.addEventListener('click', () => {
@@ -105,4 +107,16 @@ addBookButton.addEventListener('click', e => {
 dialogCloseButton.addEventListener('click', () => {
   clearDialogInputs();
   newBookDialog.close();
-})
+});
+
+dialogReadYes.addEventListener('click', () => {
+  dialogReadYes.checked = true;
+  dialogReadNo.checked = false;
+  dialogReadChecked = document.querySelector('input[name="read"]:checked');
+});
+
+dialogReadNo.addEventListener('click', () => {
+  dialogReadYes.checked = false;
+  dialogReadNo.checked = true;
+  dialogReadChecked = document.querySelector('input[name="read"]:checked');
+});
