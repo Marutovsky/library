@@ -11,8 +11,8 @@ const dialogReadNo = document.querySelector('#dialog-read-no');
 let dialogReadChecked = document.querySelector('input[name="read"]:checked');;
 
 let myLibrary = [
-  {title: 'The Hobbit: An Unexpected Journey', author: 'Rowling', pages: '123', read: 'no'},
-  {title: 'Something', author: 'XYZ', pages: '542', read: 'yes'},
+  {title: 'The Hobbit: An Unexpected Journey', author: 'Rowling', pages: '123', read: false},
+  {title: 'Something', author: 'XYZ', pages: '542', read: true},
 ]
 
 createCards();
@@ -28,7 +28,7 @@ function addBookToLibrary() {
   let title = dialogTitleInput.value;
   let author = dialogAuthorInput.value;
   let pages = dialogPagesInput.value;
-  let read = dialogReadChecked.value;
+  let read = dialogReadChecked.value === "Yes" ? true : false;
 
   myLibrary.push(new Book(title, author, pages, read));
   reloadCards();
