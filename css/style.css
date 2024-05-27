@@ -106,22 +106,26 @@ input[type='radio'] {
   transition: all 0.2s ease;
 }
 
-label[for='dialog-read-yes'] {
+label[for='dialog-read-yes'],
+label[for='read-yes'] {
   position: absolute;
   left: 0%;
   height: 20px;
 }
 
-label[for='dialog-read-no'] {
+label[for='dialog-read-no'],
+label[for='read-no'] {
   position: absolute;
   right: 0%;
 }
 
-#dialog-read-no:checked ~ .switch {
+#dialog-read-no:checked ~ .switch,
+#read-no:checked ~ .switch {
   background: #ee6352;
 }
 
-#dialog-read-no:checked ~ .switch span {
+#dialog-read-no:checked ~ .switch span,
+#read-no:checked ~ .switch span {
   background: #fff;
   margin-left: -8px;
 
@@ -133,11 +137,13 @@ label[for='dialog-read-no'] {
   }
 }
 
-#dialog-read-yes:checked ~ .switch label[for='dialog-read-yes'] {
+#dialog-read-yes:checked ~ .switch label[for='dialog-read-yes'],
+#read-yes:checked ~ .switch label[for='read-yes'] {
   color: #fff;
 }
 
-#dialog-read-no:checked ~ .switch label[for='dialog-read-no'] {
+#dialog-read-no:checked ~ .switch label[for='dialog-read-no'],
+#read-no:checked ~ .switch label[for='read-no'] {
   color: #fff;
 }
 

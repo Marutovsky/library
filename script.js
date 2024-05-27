@@ -50,7 +50,7 @@ function createCards() {
     bookTitle.textContent = book.title;
     bookAuthor.textContent = `by ${book.author}`;
     bookPages.textContent = `${book.pages} pages`;
-    bookRead.textContent = `Read: ${book.read}`;
+    bookRead.append(createToggleRadioInput());
 
     removeBookButton.textContent = 'Remove';
     removeBookButton.className = 'remove-book';
@@ -87,6 +87,49 @@ function clearDialogInputs() {
   dialogPagesInput.value = '';
   dialogReadYes.checked = true;
   dialogReadChecked = document.querySelector('input[name="read"]:checked');
+}
+
+function createToggleRadioInput() {
+  let toggleRadio = document.createElement('div');
+  toggleRadio.className = 'toggle-radio';
+
+  let paragraph = document.createElement('p');
+  paragraph.textContent = 'Read:'
+
+  let inputYes = document.createElement('input');
+  inputYes.type = 'radio';
+  inputYes.name = 'read';
+  inputYes.id = "read-yes";
+  inputYes.value = "Yes";
+
+  let inputNo = document.createElement('input');
+  inputNo.type = 'radio';
+  inputNo.name = 'read';
+  inputNo.id = 'read-no';
+  inputNo.value = 'No';
+
+  let switchDiv = document.createElement('div');
+  switchDiv.className = 'switch';
+
+  let labelYes = document.createElement('label');
+  labelYes.setAttribute('for', 'read-yes');
+  labelYes.textContent = 'Yes';
+
+  let labelNo = document.createElement('label');
+  labelNo.setAttribute('for', 'read-no');
+  labelNo.textContent = 'No';
+
+  let span = document.createElement('span');
+  
+  toggleRadio.appendChild(paragraph);
+  toggleRadio.appendChild(inputYes);
+  toggleRadio.appendChild(inputNo);
+  toggleRadio.appendChild(switchDiv);
+  switchDiv.appendChild(labelYes);
+  switchDiv.appendChild(labelNo);
+  switchDiv.appendChild(span);
+
+  return toggleRadio;
 }
 
 newBookButton.addEventListener('click', () => {
