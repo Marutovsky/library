@@ -10,7 +10,14 @@ const dialog = {
   pagesInput: document.querySelector('#dialog-pages'),
   readYes: document.querySelector('#dialog-read-yes'),
   readNo: document.querySelector('#dialog-read-no'),
-  readChecked: document.querySelector('input[name="read"]:checked')
+  readChecked: document.querySelector('input[name="read"]:checked'),
+  clearInputs: function() {
+    this.titleInput.value = '';
+    this.authorInput.value = '';
+    this.pagesInput.value = '';
+    this.readYes.checked = true;
+    this.readChecked = document.querySelector('input[name="read"]:checked');
+  }
 };
 
 let myLibrary = [
@@ -84,14 +91,6 @@ function reloadCards() {
   createCards();
 }
 
-function clearDialogInputs() {
-  dialog.titleInput.value = '';
-  dialog.authorInput.value = '';
-  dialog.pagesInput.value = '';
-  dialog.readYes.checked = true;
-  dialog.readChecked = document.querySelector('input[name="read"]:checked');
-}
-
 function createToggleRadioInput() {
   let toggleRadio = document.createElement('div');
   toggleRadio.className = 'toggle-radio';
@@ -143,7 +142,7 @@ dialog.addBookButton.addEventListener('click', e => {
   if (document.querySelector("#new-book-dialog form").checkValidity()) {
     e.preventDefault();
     addBookToLibrary();
-    clearDialogInputs();
+    dialog.clearInputs();
   } else {
     document.querySelector("#new-book-dialog form").reportValidity();
   }
@@ -151,7 +150,7 @@ dialog.addBookButton.addEventListener('click', e => {
 });
 
 dialog.closeButton.addEventListener('click', () => {
-  clearDialogInputs();
+  dialog.clearInputs();
   dialog.newBook.close();
 });
 
