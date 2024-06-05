@@ -133,10 +133,6 @@ function addBookToLibrary() {
   cards.reload();
 }
 
-function createToggleRadioInput() {
- 
-}
-
 newBookButton.addEventListener('click', () => {
   dialog.newBook.showModal();
 });
