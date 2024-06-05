@@ -20,12 +20,101 @@ const dialog = {
   }
 };
 
+const cards = {
+  create: function() {
+    myLibrary.forEach((book, bookIndex) => {
+      const card = document.createElement('div');
+      const bookTitle = document.createElement('h2');
+      const bookAuthor = document.createElement('h3');
+      const bookPages = document.createElement('p');
+      const bookRead = document.createElement('p');
+      const removeBookButton = document.createElement('button');
+    
+      card.classList.add('card');
+      card.setAttribute('data-index', bookIndex);
+      content.appendChild(card);
+    
+      bookTitle.textContent = book.title;
+      bookAuthor.textContent = `by ${book.author}`;
+      bookPages.textContent = `${book.pages} pages`;
+      bookRead.append(this.createToggleRadioInput());
+  
+      removeBookButton.textContent = 'Remove';
+      removeBookButton.className = 'remove-book';
+      removeBookButton.setAttribute('type', 'button');
+    
+      card.appendChild(bookTitle);
+      card.appendChild(bookAuthor);
+      card.appendChild(bookPages);
+      card.appendChild(bookRead);
+      card.appendChild(removeBookButton);
+  
+      removeBookButton.addEventListener('click', () => {
+        myLibrary = myLibrary.filter((book, index) => index !== bookIndex);
+        this.reload();
+      })
+    });
+  },
+  remove: function() {
+    let cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      card.remove();
+    })
+  },
+  reload: function() {
+    this.remove();
+    this.create();
+  },
+  createToggleRadioInput: function() {
+    let toggleRadio = document.createElement('div');
+    toggleRadio.className = 'toggle-radio';
+  
+    let paragraph = document.createElement('p');
+    paragraph.textContent = 'Read:'
+  
+    let inputYes = document.createElement('input');
+    inputYes.type = 'radio';
+    inputYes.name = 'read';
+    inputYes.id = "read-yes";
+    inputYes.value = "Yes";
+  
+    let inputNo = document.createElement('input');
+    inputNo.type = 'radio';
+    inputNo.name = 'read';
+    inputNo.id = 'read-no';
+    inputNo.value = 'No';
+  
+    let switchDiv = document.createElement('div');
+    switchDiv.className = 'switch';
+  
+    let labelYes = document.createElement('label');
+    labelYes.setAttribute('for', 'read-yes');
+    labelYes.textContent = 'Yes';
+  
+    let labelNo = document.createElement('label');
+    labelNo.setAttribute('for', 'read-no');
+    labelNo.textContent = 'No';
+  
+    let span = document.createElement('span');
+    
+    toggleRadio.appendChild(paragraph);
+    toggleRadio.appendChild(inputYes);
+    toggleRadio.appendChild(inputNo);
+    toggleRadio.appendChild(switchDiv);
+    switchDiv.appendChild(labelYes);
+    switchDiv.appendChild(labelNo);
+    switchDiv.appendChild(span);
+  
+    return toggleRadio;
+  }
+}
+
 let myLibrary = [
   {title: 'The Hobbit: An Unexpected Journey', author: 'Rowling', pages: '123', read: false},
   {title: 'Something', author: 'XYZ', pages: '542', read: true},
 ]
 
-createCards();
+cards.create();
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -41,97 +130,11 @@ function addBookToLibrary() {
   let read = dialog.readChecked.value === "Yes" ? true : false;
 
   myLibrary.push(new Book(title, author, pages, read));
-  reloadCards();
-}
-
-function createCards() {
-  myLibrary.forEach((book, bookIndex) => {
-    const card = document.createElement('div');
-    const bookTitle = document.createElement('h2');
-    const bookAuthor = document.createElement('h3');
-    const bookPages = document.createElement('p');
-    const bookRead = document.createElement('p');
-    const removeBookButton = document.createElement('button');
-  
-    card.classList.add('card');
-    card.setAttribute('data-index', bookIndex);
-    content.appendChild(card);
-  
-    bookTitle.textContent = book.title;
-    bookAuthor.textContent = `by ${book.author}`;
-    bookPages.textContent = `${book.pages} pages`;
-    bookRead.append(createToggleRadioInput());
-
-    removeBookButton.textContent = 'Remove';
-    removeBookButton.className = 'remove-book';
-    removeBookButton.setAttribute('type', 'button');
-  
-    card.appendChild(bookTitle);
-    card.appendChild(bookAuthor);
-    card.appendChild(bookPages);
-    card.appendChild(bookRead);
-    card.appendChild(removeBookButton);
-
-    removeBookButton.addEventListener('click', () => {
-      myLibrary = myLibrary.filter((book, index) => index !== bookIndex);
-      reloadCards();
-    })
-  });
-}
-
-function removeCards() {
-  let cards = document.querySelectorAll('.card');
-  cards.forEach(card => {
-    card.remove();
-  })
-}
-
-function reloadCards() {
-  removeCards();
-  createCards();
+  cards.reload();
 }
 
 function createToggleRadioInput() {
-  let toggleRadio = document.createElement('div');
-  toggleRadio.className = 'toggle-radio';
-
-  let paragraph = document.createElement('p');
-  paragraph.textContent = 'Read:'
-
-  let inputYes = document.createElement('input');
-  inputYes.type = 'radio';
-  inputYes.name = 'read';
-  inputYes.id = "read-yes";
-  inputYes.value = "Yes";
-
-  let inputNo = document.createElement('input');
-  inputNo.type = 'radio';
-  inputNo.name = 'read';
-  inputNo.id = 'read-no';
-  inputNo.value = 'No';
-
-  let switchDiv = document.createElement('div');
-  switchDiv.className = 'switch';
-
-  let labelYes = document.createElement('label');
-  labelYes.setAttribute('for', 'read-yes');
-  labelYes.textContent = 'Yes';
-
-  let labelNo = document.createElement('label');
-  labelNo.setAttribute('for', 'read-no');
-  labelNo.textContent = 'No';
-
-  let span = document.createElement('span');
-  
-  toggleRadio.appendChild(paragraph);
-  toggleRadio.appendChild(inputYes);
-  toggleRadio.appendChild(inputNo);
-  toggleRadio.appendChild(switchDiv);
-  switchDiv.appendChild(labelYes);
-  switchDiv.appendChild(labelNo);
-  switchDiv.appendChild(span);
-
-  return toggleRadio;
+ 
 }
 
 newBookButton.addEventListener('click', () => {
